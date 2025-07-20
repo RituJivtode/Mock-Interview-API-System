@@ -1,4 +1,3 @@
-// models/Question.js
 module.exports = (sequelize, DataTypes) => {
   const Questions = sequelize.define("Questions", {
     id: {
@@ -14,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     }
+  },{
+    timestamps: false,
   });
 
   Questions.associate = (models) => {

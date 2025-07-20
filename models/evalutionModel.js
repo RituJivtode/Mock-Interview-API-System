@@ -1,4 +1,3 @@
-// models/Evaluation.js
 module.exports = (sequelize, DataTypes) => {
   const Evaluation = sequelize.define("Evaluation", {
     id: {

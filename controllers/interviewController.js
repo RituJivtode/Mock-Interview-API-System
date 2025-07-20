@@ -4,11 +4,21 @@ const { generateQuestions, evaluateAnswers } = require('../services/openaiServic
 exports.startInterview = async (req, res) => {
   const { name, role, experience } = req.body;
 
+  // Input Validation
+  if (!name || !role || typeof experience !== 'number') {
+    return res.status(400).json({ error: 'Invalid input: name, role, and numeric experience are required' });
+  }
+
   try {
     const user = await Users.create({ name, role, experience });
     const session = await InterviewSessions.create({ userId: user.id });
 
     const questions = await generateQuestions(role, experience);
+
+    // Check if questions were generated
+    if (!Array.isArray(questions) || questions.length === 0) {
+      return res.status(500).json({ error: 'Failed to generate questions' });
+    }
 
     const savedQuestions = await Promise.all(
       questions.map(q =>

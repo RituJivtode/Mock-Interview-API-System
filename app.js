@@ -8,8 +8,12 @@ const { initializeDatabase } = require('./models/index');
 dotenv.config();
 
 const app = express();
-const bodyParser = require('body-parser');
 app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+});
 
 // Routes
 app.use('/interview', interviewRoutes);

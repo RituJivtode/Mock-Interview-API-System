@@ -17,10 +17,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+  },{
+    timestamps: false,
   });
 
   Users.associate = models => {
-    Users.hasMany(models.InterviewSessions, { foreignKey: 'UserId' });
+    Users.hasMany(models.InterviewSessions, { foreignKey: 'userId' });
   };
 
   return Users;

@@ -1,4 +1,3 @@
-// models/InterviewSession.js
 module.exports = (sequelize, DataTypes) => {
   const InterviewSessions = sequelize.define("InterviewSessions", {
     id: {
@@ -14,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     }
+  },{
+    timestamps: false,
   });
 
   InterviewSessions.associate = (models) => {
